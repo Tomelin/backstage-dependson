@@ -24,5 +24,3 @@ spec:
   lifecycle: experimental
   dependsOn:
     - component:component002
-    - component:backstage
-    - resource:storage
