@@ -93,9 +93,9 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: artists-db
-  description: Stores artist details
+  name: elastic
+  description: Elasticssearch for app
 spec:
   type: database
   owner: artist-relations-team
-  system: artist-engagement-portal
+  system: examples
