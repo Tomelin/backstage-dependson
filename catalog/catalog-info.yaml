@@ -90,11 +90,12 @@ spec:
       string example = 1;
     };
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
 apiVersion: backstage.io/v1alpha1
-kind: Group
+kind: Resource
 metadata:
-  name: infra
+  name: artists-db
+  description: Stores artist details
 spec:
-  type: team
-  children: []
+  type: database
+  owner: artist-relations-team
+  system: artist-engagement-portal
