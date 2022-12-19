@@ -6,6 +6,7 @@ metadata:
   name: nova
 spec:
   owner: nova
+  domain: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component

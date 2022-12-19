@@ -21,6 +21,8 @@ metadata:
 spec:
   type: library
   owner: nova
+  system: nova
+  domain: nova
   lifecycle: experimental
   dependsOn:
     - component:component003
