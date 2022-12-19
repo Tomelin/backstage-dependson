@@ -6,11 +6,11 @@ metadata:
   name: examples
 spec:
   owner: guests
+
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
 apiVersion: backstage.io/v1alpha1
-kind: User
+kind: Group
 metadata:
-  name: guest
+  name: nova
 spec:
-  memberOf: [guests]
+  type: team
