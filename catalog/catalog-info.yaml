@@ -89,3 +89,12 @@ spec:
     message ExampleMessage {
       string example = 1;
     };
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: infra
+spec:
+  type: team
+  children: []
