@@ -51,6 +51,7 @@ spec:
   dependsOn:
     - component:backstage
     - resource:elastic
+    - resource:postgres
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
