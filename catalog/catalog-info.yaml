@@ -1,4 +1,85 @@
 ---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: examples
+spec:
+  owner: guests
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: example-website2
+spec:
+  type: website
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  providesApis: [example-grpc-api]
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: example-grpc-api
+spec:
+  type: grpc
+  lifecycle: experimental
+  owner: guests
+  system: examples
+  definition: |
+    syntax = "proto3";
+
+    service Exampler {
+      rpc Example (ExampleMessage) returns (ExampleMessage) {};
+    }
+
+    message ExampleMessage {
+      string example = 1;
+    };
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: elastic
+  description: Elasticssearch for app
+spec:
+  type: database
+  owner: artist-relations-team
+  system: examples
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cache
+  description: Redis for app
+spec:
+  type: database
+  owner: artist-relations-team
+  system: examples
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: storage
+  description: Storage for app
+spec:
+  type: database
+  owner: artist-relations-team
+  system: examples
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: serviceBus
+  description: Queue for app
+spec:
+  type: database
+  owner: artist-relations-team
+  system: examples
+---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -80,84 +161,3 @@ spec:
     - component:component001
     - resource:storage
     - resource:serviceBus
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
-apiVersion: backstage.io/v1alpha1
-kind: System
-metadata:
-  name: examples
-spec:
-  owner: guests
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: example-website2
-spec:
-  type: website
-  lifecycle: experimental
-  owner: guests
-  system: examples
-  providesApis: [example-grpc-api]
----
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-api
-apiVersion: backstage.io/v1alpha1
-kind: API
-metadata:
-  name: example-grpc-api
-spec:
-  type: grpc
-  lifecycle: experimental
-  owner: guests
-  system: examples
-  definition: |
-    syntax = "proto3";
-
-    service Exampler {
-      rpc Example (ExampleMessage) returns (ExampleMessage) {};
-    }
-
-    message ExampleMessage {
-      string example = 1;
-    };
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: elastic
-  description: Elasticssearch for app
-spec:
-  type: database
-  owner: artist-relations-team
-  system: examples
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: cache
-  description: Redis for app
-spec:
-  type: database
-  owner: artist-relations-team
-  system: examples
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: storage
-  description: Storage for app
-spec:
-  type: database
-  owner: artist-relations-team
-  system: examples
----
-apiVersion: backstage.io/v1alpha1
-kind: Resource
-metadata:
-  name: serviceBus
-  description: Queue for app
-spec:
-  type: database
-  owner: artist-relations-team
-  system: examples
