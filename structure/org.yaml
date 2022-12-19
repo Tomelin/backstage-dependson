@@ -7,10 +7,10 @@ metadata:
 spec:
   owner: guests
 ---
-# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-user
 apiVersion: backstage.io/v1alpha1
-kind: Group
+kind: User
 metadata:
-  name: nova
+  name: guest
 spec:
-  type: team
+  memberOf: [guests]
