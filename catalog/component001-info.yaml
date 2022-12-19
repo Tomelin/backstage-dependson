@@ -27,3 +27,4 @@ spec:
     - component:backstage
     - resource:elastic
     - resource:postgres
+    - resource:storage
