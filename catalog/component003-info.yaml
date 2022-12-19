@@ -62,7 +62,9 @@ metadata:
     lighthouse.com/website-url: https://backstage.io
 spec:
   type: library
-  owner: CNCF
+  owner: nova
+  system: nova
+  domain: nova
   lifecycle: experimental
   dependsOn:
     - resource:cache
