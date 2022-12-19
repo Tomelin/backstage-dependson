@@ -3,68 +3,327 @@ apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
   name: tomelin-template
-  title: Tomelin Template
-  description: An example template for the scaffolder that creates a simple Node.js service
+  title: Example a simple Template
+  description: Create a git repository with ArgoCD files
+  tags:
+    - recommended
+    - react
+    - temp
 spec:
-  owner: user:guest
+  owner: email.owner@company.com
   type: service
-
-  # These parameters are used to generate the input form in the frontend, and are
-  # used to gather input data for the execution of the template.
   parameters:
-    - title: Fill in some steps
+    - title: Provide some simple information
       required:
-        - name
+        - project_name
+        - application_name
+        - owner
       properties:
-        name:
+        project_name:
           title: Name
           type: string
-          description: Unique name of the component
-          ui:autofocus: true
-          ui:options:
-            rows: 5
-    - title: Choose a location
-      required:
-        - repoUrl
-      properties:
-        repoUrl:
-          title: Repository Location
+          description: Project name will use in Kubernetes namespace, ArgocD project, Git repository
+          ui:field: EntityNamePicker
+          default: project001
+        application_name:
+          title: Name
           type: string
-          ui:field: RepoUrlPicker
+          description: Unique name of the application inside the project
+          ui:field: EntityNamePicker
+          default: app001
+        description:
+          title: Description
+          type: string
+          description: Help others understand what this application is for.
+        owner:
+          title: Owner
+          type: string
+          description: Owner of the component
+          default: infrastructure
+          ui:field: OwnerPicker
           ui:options:
-            allowedHosts:
-              - github.com
+            allowedKinds:
+              - Group
+        system:
+          title: System
+          type: string
+          description: System of the component
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - System
+        register:
+          title: Register
+          type: boolean
+          description: Register the component in Backstage?
+          ui:widget: checkbox
+          default: true
+        argocd:
+          title: ArgoCD
+          type: boolean
+          description: Enable ArgoCD files?
+          ui:widget: checkbox
+          default: true
+        microservice:
+          title: Microservice
+          type: boolean
+          description: Enable microservice files?
+          ui:widget: checkbox
+          default: true
+    - title: Azure Resources
+      properties:
+        enabledSTA:
+          title: Enable Storage
+          description: Enable storage in your application.
+          type: object
+          properties:
+            storage:
+              type: boolean
+              default: false
+          dependencies:
+            storage:
+              oneOf:
+                - properties:
+                    storage:
+                      enum:
+                        - false
+                - properties:
+                    storage:
+                      enum:
+                        - true
+                    storage version:
+                      type: "string"
+                      description: Choose the Storage Account tier
+                      default: v1
+                      enum:
+                        - v1
+                        - v2
+                  required: 
+                    - storage version
+        enabledDB:
+          title: Enable Database
+          description: Enable database in your application.
+          type: object
+          properties:
+            database:
+              type: boolean
+              default: false
+          dependencies:
+            database:
+              oneOf:
+                - properties:
+                    database:
+                      enum:
+                        - false
+                - properties:
+                    database:
+                      enum:
+                        - true
+                    databaseKind:
+                      type: "string"
+                      description: Choose the Database type
+                      default: PostgreSQL
+                      enum:
+                        - MySQL
+                        - PostgreSQL
+                        - MSSQL
+                        - MongoDB
+                  required: 
+                    - databaseKind
+                  dependencies:
+                    databaseKind:
+                      oneOf:
+                        - properties: 
+                            databaseKind:
+                              enum:
+                                - PostgreSQL
+                            databaseVersion:
+                              type: "string"
+                              description: Choose the Database version
+                              default: "11"
+                              enum:
+                                - "11"
+                                - "10"
+                        - properties:
+                            databaseKind:
+                              enum:
+                                - MySQL
+                            databaseVersion:
+                              type: "string"
+                              description: Choose the Database version
+                              default: "5.6"
+                              enum:
+                                - "5.6"
+                                - "5.7"
+                                - "8.0"
+                        - properties:
+                            databaseKind:
+                              enum:
+                                - MSSQL
+                            databaseVersion:
+                              type: "string"
+                              description: Choose the Database version
+                              default: "2019"
+                              enum:
+                                - "2008R2"
+                                - "2012"
+                                - "2014"
+                                - "2016"
+                                - "2017"
+                                - "2019"
+                        - properties:
+                            databaseKind:
+                              enum:
+                                - MongoDB
+                            databaseVersion:
+                              type: "string"
+                              description: Choose the Database version
+                              default: "4.0"
+                              enum:
+                                - "3.2"
+                                - "3.6"
+                                - "4.0"
+                                - "4.2"
+        enabledAKV:
+          title: Enable Key Vault
+          description: Enable key vault in your application.
+          type: object
+          properties:
+            vault:
+              type: boolean
+              default: false
+          dependencies:
+            vault:
+              oneOf:
+                - properties:
+                    vault:
+                      enum:
+                        - false
+                - properties:
+                    vault:
+                      enum:
+                        - true
+                    vault version:
+                      type: "string"
+                      description: Choose the Key Vault tier
+                      default: v1
+                      enum:
+                        - v1
+                        - v2
+                  required: 
+                    - vault version
 
-  # These steps are executed in the scaffolder backend, using data that we gathered
-  # via the parameters above.
+        enabledQueue:
+          title: Enable Message Queue
+          description: Enable message queue in your application.
+          type: object
+          properties:
+            queue:
+              type: boolean
+              default: false
+          dependencies:
+            queue:
+              oneOf:
+                - properties:
+                    queue:
+                      enum:
+                        - false
+                - properties:
+                    queue:
+                      enum:
+                        - true
+                    queue version:
+                      type: "string"
+                      description: Choose the message queue tier
+                      default: v1
+                      enum:
+                        - v1
+                        - v2
+                  required: 
+                    - queue version
+
   steps:
-    # Each step executes an action, in this case one templates files into the working directory.
-    - id: fetch-base
-      name: Fetch Base
+    - id: template
+      name: Fetch Skeleton to ArgoCD
+      if: ${{ parameters.argocd }}
       action: fetch:template
       input:
-        url: ./content
+        url: ./skeleton/overlays/argocd
+        targetPath: ./deploy/overlays/dev/argocd
+        copyWithoutRender:
+          - .github/workflows/*
         values:
-          name: ${{ parameters.name }}
+          project_name:   ${{ parameters.project_name | trim }}
+          application_name: ${{ parameters.application_name | trim}}
+          enabledDB:      ${{ parameters.enabledDB }}
+          description:    ${{ parameters.description }}
+          destination:    "https://github.com/tomelin//${{ parameters.project_name }}/${{ parameters.application_name }}.git"
+          owner:          ${{ parameters.owner }}
+          repoUrl:        "github.com/tomelin/?owner=${{ parameters.owner }}&repo=${{ parameters.application_name }}&workspace=workspace&project=${{ parameters.project_name }}"
+          argocd:        ${{ parameters.argocd }}
+          microservice:  ${{ parameters.microservice }}
+          system:  ${{ parameters.system }}
 
-    # This step publishes the contents of the working directory to GitHub.
+    - id: kubernetes
+      name: Fetch Skeleton to kubernetes
+      if: ${{ parameters.microservice }}
+      action: fetch:template
+      input:
+        url: ./skeleton/overlays/kubernetes
+        targetPath: ./deploy/overlays/dev/kubernetes
+        copyWithoutRender:
+          - .github/workflows/*
+        values:
+          project_name:   ${{ parameters.project_name | trim }}
+          application_name: ${{ parameters.application_name | trim}}
+          enabledDB:      ${{ parameters.enabledDB }}
+          description:    ${{ parameters.description }}
+          destination:    "https://github.com/tomelin//${{ parameters.project_name }}/${{ parameters.application_name }}.git"
+          owner:          ${{ parameters.owner }}
+          repoUrl:        "github.com/tomelin/?owner=${{ parameters.owner }}&repo=${{ parameters.application_name }}&workspace=workspace&project=${{ parameters.project_name }}"
+          argocd:        ${{ parameters.argocd }}
+          microservice:  ${{ parameters.microservice }}
+          system:  ${{ parameters.system }}
+
+    - id: backstage
+      name: Fetch Skeleton to backstage
+      if: ${{ parameters.register }}
+      action: fetch:template
+      input:
+        url: ./skeleton/backstage
+        targetPath: ./deploy/backstage
+        copyWithoutRender:
+          - .github/workflows/*
+        values:
+          project_name:   ${{ parameters.project_name | trim }}
+          application_name: ${{ parameters.application_name | trim}}
+          enabledDB:      ${{ parameters.enabledDB }}
+          description:    ${{ parameters.description }}
+          destination:    "https://github.com/tomelin//${{ parameters.project_name }}/${{ parameters.application_name }}.git"
+          owner:          ${{ parameters.owner }}
+          repoUrl:        "github.com/tomelin/?owner=${{ parameters.owner }}&repo=${{ parameters.application_name }}&workspace=workspace&project=${{ parameters.project_name }}"
+          argocd:        ${{ parameters.argocd }}
+          microservice:  ${{ parameters.microservice }}
+          system:  ${{ parameters.system }}
+
     - id: publish
       name: Publish
       action: publish:github
       input:
-        allowedHosts: ['github.com']
-        description: This is ${{ parameters.name }}
-        repoUrl: ${{ parameters.repoUrl }}
+        allowedHosts: ["github.com/tomelin/"]
+        description: This is ${{ parameters.project_name }}
+        repoUrl: "github.com/tomelin/?owner=${{ parameters.owner }}&repo=${{ parameters.application_name }}&workspace=workspace&project=${{ parameters.project_name }}"
+        defaultBranch: main
+        repoVisibility: public
 
-    # The final step is to register our new component in the catalog.
     - id: register
       name: Register
+      if: ${{ parameters.register }}
       action: catalog:register
       input:
         repoContentsUrl: ${{ steps.publish.output.repoContentsUrl }}
-        catalogInfoPath: '/catalog-info.yaml'
+        catalogInfoPath: "/deploy/backstage/catalog-info.yaml"
 
-  # Outputs are displayed to the user after a successful execution of the template.
   output:
     links:
       - title: Repository
