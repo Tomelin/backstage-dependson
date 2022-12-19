@@ -47,7 +47,6 @@ spec:
   owner: CNCF
   lifecycle: experimental
   dependsOn:
-    - component:backstage
     - resource:elastic
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
