@@ -24,3 +24,4 @@ spec:
   lifecycle: experimental
   dependsOn:
     - component:component002
+    - resource:serviceBus
