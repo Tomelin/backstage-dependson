@@ -23,6 +23,7 @@ spec:
   owner: CNCF
   lifecycle: experimental
   dependsOn:
+    - component:component003
     - component:backstage
     - resource:elastic
     - resource:postgres
