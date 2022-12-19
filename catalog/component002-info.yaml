@@ -23,6 +23,6 @@ spec:
   owner: CNCF
   lifecycle: experimental
   dependsOn:
-    - component:component001
+    - component:component003
     - resource:storage
     - resource:serviceBus
