@@ -6,11 +6,12 @@ metadata:
   name: examples
 spec:
   owner: guests
+  domain: payments
 
----
-apiVersion: backstage.io/v1alpha1
-kind: Group
-metadata:
-  name: nova
-spec:
-  type: team
+# ---
+# apiVersion: backstage.io/v1alpha1
+# kind: Group
+# metadata:
+#   name: nova
+# spec:
+#   type: team
