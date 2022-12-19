@@ -25,6 +25,4 @@ spec:
   dependsOn:
     - component:component002
     - component:backstage
-    - resource:elastic
-    - resource:postgres
     - resource:storage
