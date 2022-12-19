@@ -1,7 +1,8 @@
 ---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
 apiVersion: backstage.io/v1alpha1
-kind: Domain
+kind: System
 metadata:
-  name: nova
-  description: Everything related to nova application
+  name: examples
 spec:
+  owner: guests
