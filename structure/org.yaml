@@ -1,7 +1,7 @@
-# ---
-# apiVersion: backstage.io/v1alpha1
-# kind: Domain
-# metadata:
-#   name: playback
-#   description: Everything related to audio playback
-# spec:
+---
+apiVersion: backstage.io/v1alpha1
+kind: Domain
+metadata:
+  name: nova
+  description: Everything related to nova application
+spec:
