@@ -8,6 +8,7 @@ spec:
   type: database
   owner: nova
   system: nova
+  domain: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -18,6 +19,7 @@ spec:
   type: database
   owner: nova
   system: nova
+  domain: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -28,6 +30,7 @@ spec:
   type: database
   owner: nova
   system: nova
+  domain: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -38,3 +41,4 @@ spec:
   type: database
   owner: nova
   system: nova
+  domain: nova
