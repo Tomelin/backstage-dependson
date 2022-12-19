@@ -6,8 +6,8 @@ metadata:
   description: Elasticssearch for app
 spec:
   type: database
-  owner: artist-relations-team
-  system: examples
+  owner: nova
+  system: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -16,8 +16,8 @@ metadata:
   description: Redis for app
 spec:
   type: database
-  owner: artist-relations-team
-  system: examples
+  owner: nova
+  system: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -26,8 +26,8 @@ metadata:
   description: Storage for app
 spec:
   type: database
-  owner: artist-relations-team
-  system: examples
+  owner: nova
+  system: nova
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Resource
@@ -36,5 +36,5 @@ metadata:
   description: Queue for app
 spec:
   type: database
-  owner: artist-relations-team
-  system: examples
+  owner: nova
+  system: nova

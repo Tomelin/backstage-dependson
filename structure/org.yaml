@@ -7,38 +7,12 @@ metadata:
 spec:
   owner: tomelin
   domain: payments
-
 ---
 apiVersion: backstage.io/v1alpha1
-kind: Group
+kind: System
 metadata:
-  #namespace: default
-  name: tomelin
-relations:
-  - type: hasMember
-    targetRef: user:default/guest
-    target:
-      kind: user
-      namespace: default
-      name: guest
-  - type: ownerOf
-    targetRef: api:default/example-grpc-api
-    target:
-      kind: api
-      namespace: default
-      name: example-grpc-api
-  - type: ownerOf
-    targetRef: component:default/example-website
-    target:
-      kind: component
-      namespace: default
-      name: example-website
-  - type: ownerOf
-    targetRef: system:default/examples
-    target:
-      kind: system
-      namespace: default
-      name: examples
+  name: nova
+  description: Nova payments system
 spec:
-  type: team
-  children: []
+  owner: nova
+  domain: nova
