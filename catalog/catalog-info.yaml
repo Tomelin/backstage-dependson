@@ -22,6 +22,8 @@ spec:
   type: library
   owner: CNCF
   lifecycle: experimental
+  dependsOn:
+    - resource:cache
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
@@ -47,6 +49,7 @@ spec:
   owner: CNCF
   lifecycle: experimental
   dependsOn:
+    - component:backstage
     - resource:elastic
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
@@ -95,6 +98,16 @@ kind: Resource
 metadata:
   name: elastic
   description: Elasticssearch for app
+spec:
+  type: database
+  owner: artist-relations-team
+  system: examples
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cache
+  description: Redis for app
 spec:
   type: database
   owner: artist-relations-team
