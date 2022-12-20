@@ -14,12 +14,12 @@ spec:
   parameters:
     - title: Fill in some steps
       required:
-        - name
+        - test
       properties:
-        name:
-          title: Name
+        test:
+          title: test
           type: string
-          description: Unique name of the component
+          description: Unique test of the component
           ui:autofocus: true
           ui:options:
             rows: 5
