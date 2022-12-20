@@ -46,6 +46,17 @@ spec:
         values:
           name: ${{ parameters.name }}
 
+    - id: custom-step
+      name: Custom Base
+      action: mycompany:create-file
+      input:
+        contents: ./content
+        filename: content
+        values:
+          contents: ./content
+          filename: content
+
+
     # This step publishes the contents of the working directory to GitHub.
     - id: publish
       name: Publish
