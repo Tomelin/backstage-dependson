@@ -2,7 +2,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: app_skipper
+  name: appSkipper
   description: |
     Backstage is an open-source developer portal that puts the developer experience first.
   links:
@@ -22,9 +22,8 @@ spec:
   type: library
   owner: nova
   system: nova
-  domain: nova
   lifecycle: experimental
   dependsOn:
   - resource:serviceBus
   - resource:cache
-  - component:app_hub
+  - component:appHub

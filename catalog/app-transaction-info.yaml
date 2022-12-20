@@ -22,10 +22,9 @@ spec:
   type: library
   owner: nova
   system: nova
-  domain: nova
   lifecycle: experimental
   dependsOn:
   - resource:serviceBus
-  - component:app_hub
-  - component:app_skipper
+  - component:appHub
+  - component:appSkipper
   - resource:blobStorage
