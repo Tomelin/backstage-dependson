@@ -1,0 +1,11 @@
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: cache
+  description: Redis for app
+spec:
+  type: database
+  owner: nova
+  system: nova
+  domain: nova

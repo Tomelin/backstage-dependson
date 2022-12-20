@@ -13,10 +13,10 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: cache
-  description: Redis for app
+  name: keyvault
+  description: keyvault for app
 spec:
-  type: database
+  type: vault
   owner: nova
   system: nova
   domain: nova
@@ -27,7 +27,7 @@ metadata:
   name: storage
   description: Storage for app
 spec:
-  type: database
+  type: storage
   owner: nova
   system: nova
   domain: nova
@@ -35,10 +35,12 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: Resource
 metadata:
-  name: serviceBus
-  description: Queue for app
+  name: blobStorage
+  description: Storage for app
 spec:
-  type: database
+  type: storage
   owner: nova
   system: nova
   domain: nova
+  dependsOn:
+    - resource:storage
