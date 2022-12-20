@@ -2,9 +2,9 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: we-custom2-template
-  title: we custom2 Template
-  description: An we template for the scaffolder that creates a simple custom2 service
+  name: we-custom3-template
+  title: we custom3 Template
+  description: An we template for the scaffolder that creates a simple custom3 service
 spec:
   owner: user:guest
   type: service
@@ -12,15 +12,15 @@ spec:
   # These parameters are used to generate the input form in the frontend, and are
   # used to gather input data for the execution of the template.
   parameters:
-    - title: custom2 fill in some steps
+    - title: custom3 fill in some steps
       required:
         - name
       properties:
         name:
           title: Name
           type: string
-          description: we custom2 name for the component
-          ui:field: wecustom2Extension
+          description: we custom3 name for the component
+          ui:field: MyCustomExtension
 
     - title: Choose a location
       required:
