@@ -12,17 +12,6 @@ spec:
   # These parameters are used to generate the input form in the frontend, and are
   # used to gather input data for the execution of the template.
   parameters:
-    - title: Fill in some steps
-      required:
-        - test
-      properties:
-        test:
-          title: test
-          type: string
-          description: Unique test of the component
-          ui:autofocus: true
-          ui:options:
-            rows: 5
     - title: Custom fill in some steps
       required:
         - name
