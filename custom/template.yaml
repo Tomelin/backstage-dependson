@@ -2,18 +2,44 @@
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: custom-template
-  title: Test template with custom extension
-  description: Test template
+  name: hello-world-template
+  title: Hello World
+  description: Says Hello to a specified name.
 spec:
+  owner: backstage/techdocs-core
   type: service
+
   parameters:
-    - title: Fill in some steps
+    - title: You are about to say hello to your first Backstage Template
       required:
         - name
       properties:
-        name:
-          title: Name
-          type: string
-          description: My custom name for the component
-          ui:field: MyCustomExtension
+        entityTags:
+          type: array
+          ui:options: EntityTagsPicker
+
+  steps:
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: 'Hello, ${{ parameters.name }}!'
+# ---
+# apiVersion: scaffolder.backstage.io/v1beta3
+# kind: Template
+# metadata:
+#   name: custom-template
+#   title: Test template with custom extension
+#   description: Test template
+# spec:
+#   type: service
+#   parameters:
+#     - title: Fill in some steps
+#       required:
+#         - name
+#       properties:
+#         name:
+#           title: Name
+#           type: string
+#           description: My custom name for the component
+#           ui:field: MyCustomExtension
