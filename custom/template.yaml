@@ -18,7 +18,7 @@ spec:
       properties:
         name:
           title: Name
-          type: string
+          type: boolean
           description: we custom3 name for the component
           ui:field: MyCustomExtension
 
