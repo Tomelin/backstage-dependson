@@ -1,7 +1,8 @@
+---
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
 metadata:
-  name: Test template
+  name: custom-template
   title: Test template with custom extension
   description: Test template
 spec:
