@@ -13,8 +13,6 @@ spec:
   # used to gather input data for the execution of the template.
   parameters:
     - title: custom4 fill in some steps
-      required:
-        - name
       properties:
         name:
           title: Name
