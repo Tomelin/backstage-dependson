@@ -2,7 +2,7 @@ apiVersion: scaffolder.backstage.io/v1beta3
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-template
 kind: Template
 metadata:
-  name: we-custom4-template
+  name: my-custom4-template
   title: we custom4 Template
   description: An we template for the scaffolder that creates a simple custom4 service
 spec:
