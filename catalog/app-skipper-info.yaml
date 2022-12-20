@@ -27,4 +27,4 @@ spec:
   dependsOn:
   - resource:serviceBus
   - resource:cache
-  - app_hub
+  - component:app_hub

@@ -26,6 +26,6 @@ spec:
   lifecycle: experimental
   dependsOn:
   - resource:serviceBus
-  - app_hub
-  - app_skipper
+  - component:app_hub
+  - component:app_skipper
   - resource:blobStorage
