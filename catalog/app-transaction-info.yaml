@@ -2,7 +2,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: app_transaction
+  name: appTransaction
   description: |
     Backstage is an open-source developer portal that puts the developer experience first.
   links:
